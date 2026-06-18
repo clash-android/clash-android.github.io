@@ -1,0 +1,24 @@
+<header class="bg-white border-b border-gray-100 sticky top-0 z-50 backdrop-blur-md bg-white/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-8">
+      <a href="{{ '/' | relative_url }}" class="text-2xl font-black tracking-tighter text-blue-600 hover:text-blue-700 transition flex items-center gap-2">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        <span class="hidden sm:inline">Clash for Android</span>
+      </a>
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="{{ '/' | relative_url }}" class="text-gray-600 hover:text-blue-600 font-bold text-sm transition">首页</a>
+        <a href="{{ '/tags/' | relative_url }}" class="text-gray-600 hover:text-blue-600 font-bold text-sm transition">标签云</a>
+        <a href="{{ '/about/' | relative_url }}" class="text-gray-600 hover:text-blue-600 font-bold text-sm transition">关于我们</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="relative hidden sm:block">
+        <input type="text" placeholder="搜索文章..." class="bg-gray-50 border border-gray-100 text-gray-900 px-5 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-sm w-64 transition-all">
+        <svg class="w-4 h-4 text-gray-400 absolute right-4 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+      </div>
+      <button class="md:hidden text-gray-600">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+      </button>
+    </div>
+  </div>
+</header>

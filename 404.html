@@ -1,0 +1,126 @@
+---
+layout: default
+title: "标签文章列表 | Clash节点推荐"
+description: "按标签浏览Clash节点、机场推荐、代理教程等相关文章。"
+permalink: /404.html
+---
+<div class="max-w-7xl mx-auto px-4 py-8" id="main-content">
+  <!-- 默认 404 内容，如果不是 tag 路由则显示 -->
+  <div id="not-found-content" class="text-center py-16" style="display:none">
+    <h1 class="text-6xl font-extrabold text-gray-300 mb-4">404</h1>
+    <p class="text-xl text-gray-600 mb-6">页面不存在</p>
+    <a href="/" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">返回首页</a>
+  </div>
+  
+  <!-- Tag 页面内容 -->
+  <div id="tag-page" style="display:none">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <div class="flex-1 min-w-0" id="tag-content"></div>
+      <aside class="w-full lg:w-72 flex-shrink-0">
+        <div class="bg-white rounded-2xl shadow-sm p-5 sticky top-4">
+          <h3 class="text-base font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">最新文章</h3>
+          <ul class="space-y-3" id="sidebar-posts-list"></ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script>
+var allPosts = [
+  {% for post in site.posts %}
+  {
+    title: {{ post.title | jsonify }},
+    url: "{{ post.url | relative_url }}",
+    date: "{{ post.date | date: '%Y-%m-%d' }}",
+    tags: {{ post.tags | jsonify }},
+    excerpt: {{ post.excerpt | strip_html | truncatewords: 25 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+
+function getAllTags() {
+  var tags = [];
+  allPosts.forEach(function(p) {
+    (p.tags || []).forEach(function(t) {
+      if (tags.indexOf(t) === -1) tags.push(t);
+    });
+  });
+  return tags;
+}
+
+function toSlug(str) {
+  return str.toLowerCase()
+    .replace(/[\s]+/g, '-')
+    .replace(/[^a-z0-9\u4e00-\u9fff\-]/g, '')
+    .replace(/^-+|-+$/g, '');
+}
+
+function findTagBySlug(slug) {
+  var allTags = getAllTags();
+  // 精确匹配
+  for (var i = 0; i < allTags.length; i++) {
+    if (toSlug(allTags[i]) === slug || allTags[i] === slug) return allTags[i];
+  }
+  // URL decode 后再匹配
+  var decoded = decodeURIComponent(slug);
+  for (var i = 0; i < allTags.length; i++) {
+    if (allTags[i] === decoded || toSlug(allTags[i]) === toSlug(decoded)) return allTags[i];
+  }
+  return null;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var path = window.location.pathname;
+  var tagMatch = path.match(/\/tags\/([^\/]+)\/?$/);
+  
+  if (tagMatch) {
+    var slug = tagMatch[1];
+    var tagName = findTagBySlug(slug) || decodeURIComponent(slug);
+    var tagPosts = allPosts.filter(function(p) {
+      return (p.tags || []).indexOf(tagName) !== -1;
+    });
+
+    document.getElementById('tag-page').style.display = 'block';
+    
+    // 填充侧边栏
+    var sidebarHtml = '';
+    allPosts.slice(0, 8).forEach(function(p) {
+      sidebarHtml += '<li><a href="' + p.url + '" class="group block">' +
+        '<p class="text-sm font-medium text-gray-800 group-hover:text-blue-600 leading-snug line-clamp-2 transition">' + p.title + '</p>' +
+        '<p class="text-xs text-gray-400 mt-0.5">' + p.date + '</p></a></li>';
+    });
+    document.getElementById('sidebar-posts-list').innerHTML = sidebarHtml;
+
+    // 填充主内容
+    var html = '<nav class="flex items-center gap-1 text-sm text-gray-500 mb-6">' +
+      '<a href="/" class="hover:text-blue-600">首页</a><span>/</span>' +
+      '<a href="/tags/" class="hover:text-blue-600">标签</a><span>/</span>' +
+      '<span class="text-gray-800 font-medium">' + tagName + '</span></nav>';
+    html += '<div class="mb-6"><h1 class="text-3xl font-extrabold text-gray-900 mb-2">' +
+      '<span class="text-red-500">#</span> ' + tagName + '</h1>' +
+      '<p class="text-gray-500 text-sm">共 ' + tagPosts.length + ' 篇文章</p></div>';
+
+    if (tagPosts.length > 0) {
+      html += '<div class="space-y-4">';
+      tagPosts.forEach(function(p) {
+        html += '<article class="bg-white rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 p-5">' +
+          '<h2 class="text-base font-bold text-gray-900 mb-1 leading-snug">' +
+          '<a href="' + p.url + '" class="hover:text-blue-600 transition">' + p.title + '</a></h2>' +
+          '<p class="text-xs text-gray-400 mb-2">' + p.date + '</p>' +
+          (p.excerpt ? '<p class="text-sm text-gray-600 line-clamp-2">' + p.excerpt + '</p>' : '') +
+          '</article>';
+      });
+      html += '</div>';
+    } else {
+      html += '<p class="text-gray-500">该标签暂无文章。</p>';
+    }
+    document.getElementById('tag-content').innerHTML = html;
+    document.title = '#' + tagName + ' | Clash节点推荐';
+    
+  } else {
+    // 真正的 404
+    document.getElementById('not-found-content').style.display = 'block';
+  }
+});
+</script>

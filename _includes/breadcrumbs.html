@@ -1,0 +1,10 @@
+<nav class="flex items-center flex-wrap gap-1 text-sm text-gray-500 mb-5" aria-label="Breadcrumb">
+  <a href="{{ '/' | relative_url }}" class="hover:text-blue-600 transition">首页</a>
+  <span class="text-gray-300">/</span>
+  {% if page.categories.size > 0 %}
+    {% assign cat = page.categories.first %}
+    <a href="{{ '/categories/' | append: cat | slugify | append: '/' | relative_url }}" class="hover:text-blue-600 transition">{{ cat }}</a>
+    <span class="text-gray-300">/</span>
+  {% endif %}
+  <span class="text-gray-700 font-medium truncate max-w-xs">{{ page.title | escape | truncatewords: 8 }}</span>
+</nav>

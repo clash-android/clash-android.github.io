@@ -1,0 +1,211 @@
+---
+layout: default
+---
+
+<div class="home max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <!-- Hero Section -->
+  <section class="mb-16">
+    <div class="bg-gradient-to-br from-blue-700 via-indigo-800 to-purple-900 rounded-[2.5rem] overflow-hidden shadow-2xl relative min-h-[450px] flex items-center border border-white/10">
+      <!-- Decorative background elements -->
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 p-8 md:p-20 w-full lg:w-2/3">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-2xl mb-8">
+          <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+          </span>
+          <span class="text-white text-xs font-black uppercase tracking-widest">2026 实时更新中</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-8 leading-[1.1] tracking-tight">
+          {{ site.title }}
+        </h1>
+        
+        <p class="text-blue-100/80 text-lg md:text-xl mb-10 max-w-2xl leading-relaxed font-medium">
+          {{ site.description }}
+        </p>
+        
+        <div class="flex flex-wrap gap-5">
+          <a href="#latest-posts" class="bg-white text-blue-900 px-10 py-4 rounded-2xl font-black hover:bg-blue-50 transition-all transform hover:-translate-y-1 shadow-xl flex items-center gap-2">
+            立即探索
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+          </a>
+          <a href="/tags/" class="bg-white/10 text-white border border-white/20 backdrop-blur-md px-10 py-4 rounded-2xl font-black hover:bg-white/20 transition-all transform hover:-translate-y-1 flex items-center gap-2">
+            热门标签
+          </a>
+        </div>
+      </div>
+      
+      <!-- Abstract visual element for desktop -->
+      <div class="hidden lg:block absolute right-20 top-1/2 -translate-y-1/2 w-1/3">
+        <div class="relative">
+          <div class="absolute inset-0 bg-blue-500/30 blur-[100px] rounded-full"></div>
+          <svg class="relative w-full h-auto text-white/20" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 20C55.8172 20 20 55.8172 20 100C20 144.183 55.8172 180 100 180C144.183 180 180 144.183 180 100C180 55.8172 144.183 20 100 20ZM100 160C66.8629 160 40 133.137 40 100C40 66.8629 66.8629 40 100 40C133.137 40 160 66.8629 160 100C160 133.137 133.137 160 100 160Z" fill="currentColor"/>
+            <path d="M100 60C77.9086 60 60 77.9086 60 100C60 122.091 77.9086 140 100 140C122.091 140 140 122.091 140 100C140 77.9086 122.091 60 100 60Z" fill="currentColor" fill-opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="flex flex-col lg:flex-row gap-16">
+    <!-- Main Content: Article List -->
+    <div class="lg:w-2/3" id="latest-posts">
+      <div class="flex items-center justify-between mb-12">
+        <div class="flex items-center gap-4">
+          <div class="w-2 h-10 bg-blue-600 rounded-full"></div>
+          <h2 class="text-4xl font-black text-gray-900 tracking-tight">最新发布</h2>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-xl">
+          <span class="text-sm font-black text-gray-500 uppercase tracking-widest">共 {{ site.posts | size }} 篇</span>
+        </div>
+      </div>
+      
+      <div class="grid gap-12">
+        {% for post in site.posts limit: 15 %}
+        <article class="group bg-white rounded-[2rem] shadow-sm hover:shadow-2xl transition-all duration-700 overflow-hidden flex flex-col border border-gray-100/50">
+          <div class="relative h-72 overflow-hidden">
+            {% if post.image %}
+              <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
+            {% else %}
+              <div class="w-full h-full bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center group-hover:scale-105 transition-transform duration-1000">
+                <svg class="w-24 h-24 text-blue-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                </svg>
+              </div>
+            {% endif %}
+            
+            <!-- Floating Badge -->
+            <div class="absolute top-6 left-6">
+              {% if post.tags.size > 0 %}
+                <span class="bg-white/90 backdrop-blur-md text-blue-600 text-[10px] font-black uppercase px-4 py-2 rounded-xl shadow-xl border border-white/20 tracking-widest">
+                  {{ post.tags[0] }}
+                </span>
+              {% endif %}
+            </div>
+            
+            <!-- Date Overlay -->
+            <div class="absolute bottom-6 right-6">
+              <div class="bg-black/20 backdrop-blur-md border border-white/20 px-4 py-2 rounded-xl text-white text-[10px] font-black tracking-widest uppercase">
+                {{ post.date | date: "%Y / %m / %d" }}
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-10 flex flex-col flex-1">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="flex -space-x-2">
+                <div class="w-8 h-8 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-white text-[10px] font-black">C</div>
+              </div>
+              <span class="text-xs font-black text-gray-400 uppercase tracking-widest">由 {{ site.author | default: "Admin" }} 发布</span>
+              <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+              <span class="text-xs font-black text-blue-500 uppercase tracking-widest">{% assign words = post.content | number_of_words %}{% if words < 360 %}1 分钟阅读{% else %}{{ words | divided_by: 180 }} 分钟阅读{% endif %}</span>
+            </div>
+            
+            <h3 class="text-2xl md:text-3xl font-black mb-6 leading-tight">
+              <a href="{{ post.url | relative_url }}" class="text-gray-900 hover:text-blue-600 transition-colors duration-300 block">
+                {{ post.title | escape }}
+              </a>
+            </h3>
+            
+            <p class="text-gray-500 text-lg mb-10 line-clamp-3 leading-relaxed font-medium">
+              {% if post.description %}
+                {{ post.description | strip_html | truncate: 180 }}
+              {% else %}
+                {{ post.content | strip_html | truncate: 180 }}
+              {% endif %}
+            </p>
+            
+            <div class="mt-auto pt-8 border-t border-gray-50 flex items-center justify-between">
+              <a href="{{ post.url | relative_url }}" class="group/btn inline-flex items-center gap-3 text-blue-600 font-black text-sm uppercase tracking-widest">
+                阅读全文
+                <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center group-hover/btn:bg-blue-600 group-hover/btn:text-white transition-all duration-300">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+              </a>
+              
+              <div class="flex items-center gap-4">
+                <button class="text-gray-300 hover:text-blue-500 transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      
+      <!-- Pagination -->
+      <div class="mt-20 flex justify-center">
+        <a href="/archive/" class="px-12 py-5 bg-gray-900 text-white rounded-2xl font-black hover:bg-blue-600 transition-all shadow-xl transform hover:-translate-y-1 uppercase tracking-widest text-sm">
+          查看更多文章
+        </a>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="lg:w-1/3 space-y-12">
+      <!-- Search Widget -->
+      <div class="bg-white rounded-[2rem] shadow-sm p-10 border border-gray-100/50">
+        <h3 class="text-xl font-black text-gray-900 mb-8 flex items-center gap-3">
+          <span class="w-2 h-8 bg-blue-600 rounded-full"></span>
+          搜索内容
+        </h3>
+        <div class="relative">
+          <input type="text" placeholder="输入关键词..." class="w-full bg-gray-50 border-none px-6 py-4 rounded-2xl focus:ring-2 focus:ring-blue-500/20 text-sm font-bold">
+          <button class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Hot Posts Widget -->
+      <div class="bg-white rounded-[2rem] shadow-sm p-10 border border-gray-100/50">
+        <h3 class="text-xl font-black text-gray-900 mb-10 flex items-center gap-3">
+          <span class="w-2 h-8 bg-orange-500 rounded-full"></span>
+          热点文章
+        </h3>
+        <div class="space-y-10">
+          {% assign hot_posts = site.posts | sample: 5 %}
+          {% for post in hot_posts %}
+          <a href="{{ post.url | relative_url }}" class="flex gap-5 group">
+            <div class="w-20 h-20 flex-shrink-0 rounded-2xl overflow-hidden bg-gray-100 border border-gray-50">
+              {% if post.image %}
+                <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+              {% else %}
+                <div class="w-full h-full flex items-center justify-center text-blue-200">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                </div>
+              {% endif %}
+            </div>
+            <div class="flex flex-col justify-center min-w-0">
+              <h4 class="text-sm font-black leading-snug mb-2 text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">{{ post.title | escape }}</h4>
+              <span class="text-[10px] text-gray-400 font-black uppercase tracking-widest">{{ post.date | date: "%Y / %m / %d" }}</span>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      
+      <!-- Tags Widget -->
+      <div class="bg-white rounded-[2rem] shadow-sm p-10 border border-gray-100/50 sticky top-24">
+        <h3 class="text-xl font-black text-gray-900 mb-8 flex items-center gap-3">
+          <span class="w-2 h-8 bg-purple-600 rounded-full"></span>
+          热门标签
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          {% assign tags = site.tags | sort %}
+          {% for tag in tags limit: 20 %}
+            <a href="/tags/#{{ tag[0] | slugify }}" class="bg-gray-50 hover:bg-blue-600 hover:text-white text-gray-500 text-[10px] font-black uppercase tracking-widest px-5 py-3 rounded-2xl transition-all duration-300 border border-gray-100 hover:border-blue-600 hover:shadow-lg hover:shadow-blue-500/20">
+              {{ tag[0] }}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>

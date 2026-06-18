@@ -1,0 +1,181 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {%- comment -%}
+    jekyll-seo-tag 会自动生成：
+    - <title>
+    - <meta name="description">
+    - <meta property="og:*">
+    - <meta name="twitter:*">
+    - <link rel="canonical">
+    所以这里不再手动写这些标签，避免重复。
+  {%- endcomment -%}
+
+  {%- comment -%} keywords 标签（jekyll-seo-tag 不生成，需手动添加）{%- endcomment -%}
+  {% if page.keywords and page.keywords != "" %}
+  <meta name="keywords" content="{{ page.keywords | escape }}">
+  {% elsif site.keywords %}
+  <meta name="keywords" content="{{ site.keywords | escape }}">
+  {% endif %}
+
+  <meta name="robots" content="index, follow">
+
+  {%- comment -%} Tailwind CSS CDN with Typography plugin {%- endcomment -%}
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          typography: {
+            DEFAULT: {
+              css: {
+                maxWidth: 'none',
+                color: '#374151',
+                a: { color: '#2563eb', textDecoration: 'none' },
+                'a:hover': { textDecoration: 'underline' },
+                h2: { color: '#111827', fontWeight: '700' },
+                h3: { color: '#1f2937', fontWeight: '600' },
+                img: { borderRadius: '0.75rem' },
+              }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  {%- comment -%} JSON-LD 结构化数据（jekyll-seo-tag 不生成，需手动添加）{%- endcomment -%}
+  {% if page.layout == 'post' %}
+  {%- assign post_desc = "" -%}
+  {%- if page.description and page.description != "" -%}
+    {%- assign post_desc = page.description | escape -%}
+  {%- elsif page.excerpt -%}
+    {%- assign post_desc = page.excerpt | strip_html | strip_newlines | truncate: 155 | escape -%}
+  {%- else -%}
+    {%- assign post_desc = site.description | escape -%}
+  {%- endif -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "{{ page.title | escape }}",
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+    "description": "{{ post_desc }}",
+    "author": {
+      "@type": "Person",
+      "name": "{% if page.author %}{{ page.author | escape }}{% else %}{{ site.author | escape }}{% endif %}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.title | escape }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}{{ site.logo }}"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ page.url | absolute_url }}"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "{{ site.url }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ page.title | escape }}",
+        "item": "{{ page.url | absolute_url }}"
+      }
+    ]
+  }
+  </script>
+  {% if page.faq %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for item in page.faq %}
+      {
+        "@type": "Question",
+        "name": "{{ item.question | escape }}",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ item.answer | escape }}"
+        }
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+  </script>
+  {% endif %}
+  {% else %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "url": "{{ site.url }}",
+    "name": "{{ site.title | escape }}",
+    "description": "{{ site.description | escape }}"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "{{ site.url }}",
+    "name": "{{ site.title | escape }}",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ site.url }}/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  {% endif %}
+
+  {%- comment -%}
+    jekyll-seo-tag 插件：自动生成 title、description、og、twitter card、canonical
+    必须放在所有手动 meta 之后，避免被覆盖
+  {%- endcomment -%}
+  {% seo %}
+      
+  <div id="popupOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 999;">
+      <div style="background: #fff; padding: 20px 30px; border-radius: 12px; max-width: 100%; width: 370px; text-align: center; position: relative; box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);">
+   <a href="https://ml.yfqz1.net/register?code=PCC6A3bC"> <p style="margin: 0 0 10px; font-size: 26px; color: red;">免费试用机场</p>
+ <button onclick="closePopup()" style="
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #f44336;
+        border: none;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        transition: background 0.3s;
+      " onmouseover="this.style.background='#d32f2f'" onmouseout="this.style.background='#f44336'">×</button>     
+     
+      <img src="https://xhjjiedian.com/wp-content/uploads/2025/09/2025091511003119.png" alt="机场地址" style="width: 300px; height: 290px; display: block; margin: 0 auto 15px;" /></a>
+    </div>
+  
+</div>
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
+</head>
