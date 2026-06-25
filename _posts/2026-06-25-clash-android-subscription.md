@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2026-06-18 00:00:00 +0800
+date: 2026-06-25 00:00:00 +0800
 title: "Clash for Android 订阅管理指南"
 description: "详细介绍如何在 Clash for Android 中导入、管理和更新订阅链接。"
 keywords: "Clash for Android,订阅管理,节点订阅,订阅链接"

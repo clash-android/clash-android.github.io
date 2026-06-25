@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2026-06-18 00:00:00 +0800
+date: 2026-06-25 00:00:00 +0800
 title: "Clash for Android 配置文件详解"
 description: "深入了解 Clash for Android 的 YAML 配置文件格式、规则设置和高级配置选项。"
 keywords: "Clash for Android,配置文件,YAML,规则配置,高级设置"

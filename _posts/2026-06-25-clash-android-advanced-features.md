@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2026-06-18 00:00:00 +0800
+date: 2026-06-25 00:00:00 +0800
 title: "Clash for Android 高级功能详解"
 description: "深入探讨 Clash for Android 的高级功能，包括规则集、脚本和自定义配置。"
 keywords: "Clash for Android,高级功能,规则集,脚本,自定义配置"

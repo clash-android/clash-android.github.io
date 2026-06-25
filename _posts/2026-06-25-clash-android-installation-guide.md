@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2026-06-18 00:00:00 +0800
+date: 2026-06-25 00:00:00 +0800
 title: "Clash for Android 安装教程"
 description: "详细的 Clash for Android 安装步骤指南，包括下载、安装和初始配置。"
 keywords: "Clash for Android,安装教程,下载安装,安卓代理"

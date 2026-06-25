@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2026-06-18 00:00:00 +0800
+date: 2026-06-25 00:00:00 +0800
 title: "Clash for Android 常见问题排查"
 description: "解决 Clash for Android 使用过程中的常见问题，包括连接失败、配置错误等。"
 keywords: "Clash for Android,故障排除,常见问题,解决方案"

@@ -3,6 +3,7 @@ description: "Clash for Android 官方指南，提供最新的 Clash for Android
 keywords: "Clash for Android,安卓代理,Clash安卓版,代理工具,节点订阅,配置文件,安卓VPN,网络加速"
 author: "Clash for Android"
 timezone: Asia/Shanghai
+future: true
 url: "https://clash-android.github.io"
 baseurl: ""
 logo: "/assets/images/logo.png"
