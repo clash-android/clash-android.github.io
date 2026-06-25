@@ -2,6 +2,7 @@ title: "Clash for Android | 安卓代理工具指南"
 description: "Clash for Android 官方指南，提供最新的 Clash for Android 下载、安装教程、配置文件使用方法、节点订阅导入、规则配置等完整教程。帮助安卓用户快速上手 Clash 代理工具。"
 keywords: "Clash for Android,安卓代理,Clash安卓版,代理工具,节点订阅,配置文件,安卓VPN,网络加速"
 author: "Clash for Android"
+timezone: Asia/Shanghai
 url: "https://clash-android.github.io"
 baseurl: ""
 logo: "/assets/images/logo.png"
